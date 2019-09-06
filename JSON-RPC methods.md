@@ -16,7 +16,7 @@
 
 
 
-### <span id="tx">Gzv_tx </span> [⇧](#top)
+### <span id="tx">Gzv_tx </span> [⇧](#top)
 
 发送交易
 
@@ -437,22 +437,22 @@ print(response.json())
 
 `Obejct`-块信息
 
-- `height`
-- `hash`
-- `pre_hash`
-- `cur_time`
-- `pre_time`
-- `castor`
-- `group_id`
+- `height`-区块高度
+- `hash`-当前区块hash
+- `pre_hash`-上一块的区块hash
+- `cur_time`-当前块时间
+- `pre_time`-上一块时间
+- `castor`-提案者地址
+- `group_id`-验证组id
 - `prove`
-- `total_qn`
-- `qn`
-- `txs`
-- `state_root`
-- `tx_root`
-- `receipt_root`
+- `total_qn`-总块权重
+- `qn`-当前块权重
+- `txs`-块所包含交易数
+- `state_root`-state_db的根hash
+- `tx_root`-交易根hash
+- `receipt_root`-回执根hash
 - `prove_root`
-- `random`
+- `random`-随机值
 
 #### Example
 
@@ -521,24 +521,23 @@ print(response.json())
 
 #### Returns
 
-`Obejct`-块信息
-
-- `height`
-- `hash`
-- `pre_hash`
-- `cur_time`
-- `pre_time`
-- `castor`
-- `group_id`
-- `prove`
-- `total_qn`
-- `qn`
-- `txs`
-- `state_root`
-- `tx_root`
-- `receipt_root`
-- `prove_root`
-- `random`
+- `Obejct`-块信息
+  - `height`-区块高度
+  - `hash`-当前区块hash
+  - `pre_hash`-上一块的区块hash
+  - `cur_time`-当前块时间
+  - `pre_time`-上一块时间
+  - `castor`-提案者地址
+  - `group_id`-验证组id
+  - `prove`
+  - `total_qn`-总块权重
+  - `qn`-当前块权重
+  - `txs`-块所包含交易数
+  - `state_root`-state_db的根hash
+  - `tx_root`-交易根hash
+  - `receipt_root`-回执根hash
+  - `prove_root`
+  - `random`-随机值
 
 #### Example
 
@@ -718,11 +717,11 @@ print(response.json())
 
 `Object`-矿工信息
 
-- `current_stake`
-- `full_stake`
-- `tickets`
-- `identity`
-- `valid_tickets`
+- `current_stake`-当前质押
+- `full_stake`-满质押金额，仅矿池该值有效
+- `tickets`-被投票数
+- `identity`-身份
+- `valid_tickets`-有效票数
 
 #### Example
 
@@ -775,7 +774,7 @@ print(response.json())
 
 ```json
 "params": [
-        "zvb5f5758ba45ca7db85ad405d241641da867384a3eefeb80973d3ddc51e176acf"， ""
+        "zvb5f5758ba45ca7db85ad405d241641da867384a3eefeb80973d3ddc51e176acf", ""
  ]
 ```
 
@@ -786,21 +785,21 @@ print(response.json())
 - `overview`- 总览
   - `Array<Object>`
     - `Object`-详情
-      - `stake`
-      - `apply_height`
-      - `type`
-      - `miner_status`
-      - `status_update_height`
-      - `identity`
-      - `identity_update_height`
+      - `stake`-总质押金额
+      - `apply_height`-申请高度
+      - `type`-申请类型
+      - `miner_status`-矿工状态
+      - `status_update_height`状态更新高度
+      - `identity`-身份
+      - `identity_update_height`-身份更新高度
 - `details`- 详情
-  - `Map<string, Array<Object>>`
+  - `Map<string, Array<Object>>`-key值为质押人
     - Object`-详情
-      - `value`
-      - `update_height`
-      - `m_type`
-      - `stake_status`
-      - `can_reduce_height`
+      - `value`-质押金额
+      - `update_height`-质押更新高度
+      - `m_type`-质押类型
+      - `stake_status`-质押状态
+      - `can_reduce_height`-可减少质押的块高
 
 #### Example
 
@@ -812,7 +811,7 @@ url = 'http://node1.zvchain.io:8101/'
 payload = {
     "method": "Gzv_minerInfo",
     "params": [
-         "zvb5f5758ba45ca7db85ad405d241641da867384a3eefeb80973d3ddc51e176acf"， ""
+         "zvb5f5758ba45ca7db85ad405d241641da867384a3eefeb80973d3ddc51e176acf", ""
     ],
     "jsonrpc": "2.0",
     "id": 1
@@ -893,8 +892,8 @@ print(response.json())
 
 `Obeject`-交易详情
 
-- `data`- 交易的data区，base64编码
-- `value`-交易金额， TAS单位
+- `data`- 交易的data区, base64编码
+- `value`-交易金额, TAS单位
 - `nonce`-交易nonce
 - `source`-交易发起者
 - `target`-交易接受者
@@ -973,7 +972,7 @@ import json
 import requests
 url = 'http://node1.zvchain.io:8101/'
 payload = {
-    "method": "Gzv_balance",
+    "method": "Gzv_queryAccountData",
     "params": [
         "zvb5f5758ba45ca7db85ad405d241641da867384a3eefeb80973d3ddc51e176acf", "key", 1
     ],
@@ -996,4 +995,3 @@ print(response.json())
     "result": [10] 
 }
 ```
-
